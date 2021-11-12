@@ -57,11 +57,13 @@ subset3 <- leader[sample3, ]
 sample4 <- sample(1:nrow(leader), 10000)
 subset4 <- leader[sample4, ]
 
-# This is such a cool plot!
+# Plotting them all
+par(mfrow = c(2, 2)) # Why isn't this working?
 scatter(subset)
 scatter(subset2)
 scatter(subset3) # What is going on?
 scatter(subset4) # WHAT ????????????
+par(mfrow=c(1,1))
 
 # How many rows are in leader?
 nrow(leader) # 1572222
@@ -70,19 +72,12 @@ nrow(leader) # 1572222
 # vals only went up to 1000) only that first graph is showing up. We're 
 # definitely need to figure out which factors are causing the different lines
 
-# Plotting them all side by side
-par(mfrow = c(2, 2)) # WHY ISN'T THIS WORKING?
-scatter(subset)
-scatter(subset2)
-scatter(subset3)
-scatter(subset4)
-par(mfrow=c(1,1))
 
 # Looking at the data, it might be ordered by division?
 table(subset2$division)
 table(subset4$division)
 
-# ADDENDM: This hypothesis seems correct. All of our data points in the first 2 subsets
+# ADDENDUM: This hypothesis seems correct. All of our data points in the first 2 subsets
 # are in division 1. However, subset 4 begings the new division. The data is ordered, but 
 # the random sampling wasn't effective because I didn't sample over the million rows.
 
