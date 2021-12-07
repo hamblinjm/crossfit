@@ -94,16 +94,6 @@ library(pirateplot)
 
 # Aww, this package isn't available in this version of R :(
 
-names(athlete)
-
-max(athlete$pullups, na.rm = TRUE)
-min(athlete$pullups, na.rm = TRUE)
-
-median(athlete$pullups, na.rm = TRUE)
-mean(athlete$pullups, na.rm = TRUE)
-
-library(tidyverse)
-
 athlete %>%
   select(pullups) %>%
   arrange(desc(pullups)) %>%
@@ -114,26 +104,13 @@ max(athlete$helen, na.rm = TRUE)
 
 
 
-names(athlete)
-names(leader)
-
-
-
+# Histogram
 athlete %>%
   filter(backsq < 1000) %>%
   ggplot(mapping = aes(x = backsq)) +
   geom_histogram()
 
-athlete %>%
-  filter(backsq == 8388607)
-
-
-names(leader)
-table(leader$year)
-
-head(leader$year)
-
-
+# Pullups
 athlete %>%
   filter(pullups < 74 & pullups > 30) %>%
   arrange(desc(pullups)) %>%
@@ -141,16 +118,53 @@ athlete %>%
 
 names(athlete)
 
+# Just for testing
 athlete %>%
   drop_na(train) %>%
   head(n = 100) %>%
   select(athlete_id, team, train) -> train
   
-
+# String detection
 str_detect(train$train, "I workout mostly") -> vals
-
 train$present <- vals
 
-train
+# Merging everything
+df = merge(x=athlete,y=leader,by="athlete_id")
+df2 = merge(x=athlete,y=leader,by="athlete_id", all = TRUE)
 
-athlete$train
+# Number of missing values
+df %>%
+  summarise_all(funs(sum(is.na(.))))
+
+df2 %>%
+  summarise_all(funs(sum(is.na(.))))
+
+
+hist(df2$pullups)
+
+histies <- function(variable, limit) {
+  
+  athlete %>%
+    filter(variable < limit) %>%
+    ggplot(mapping = aes(x = variable)) +
+    geom_histogram()
+  
+}
+
+nrow(df)
+nrow(df2)
+
+df %>%
+  drop_na() -> this
+
+head(this)
+nrow(this)
+
+names(this)
+
+this %>%
+  filter(pullups < 74) %>%
+  ggplot(mapping = aes(x = pullups)) +
+  geom_histogram()
+
+
