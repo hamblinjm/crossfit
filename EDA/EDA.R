@@ -4,6 +4,8 @@
 athlete <- read.csv('athlete.csv')
 leader <- read.csv('leader.csv')
 
+names(leader)
+
 # Head
 head(leader)
 head(athlete)
@@ -92,3 +94,63 @@ library(pirateplot)
 
 # Aww, this package isn't available in this version of R :(
 
+names(athlete)
+
+max(athlete$pullups, na.rm = TRUE)
+min(athlete$pullups, na.rm = TRUE)
+
+median(athlete$pullups, na.rm = TRUE)
+mean(athlete$pullups, na.rm = TRUE)
+
+library(tidyverse)
+
+athlete %>%
+  select(pullups) %>%
+  arrange(desc(pullups)) %>%
+  head(n = 100)
+
+max(athlete$backsq, na.rm = TRUE)
+max(athlete$helen, na.rm = TRUE)
+
+
+
+names(athlete)
+names(leader)
+
+
+
+athlete %>%
+  filter(backsq < 1000) %>%
+  ggplot(mapping = aes(x = backsq)) +
+  geom_histogram()
+
+athlete %>%
+  filter(backsq == 8388607)
+
+
+names(leader)
+table(leader$year)
+
+head(leader$year)
+
+
+athlete %>%
+  filter(pullups < 74 & pullups > 30) %>%
+  arrange(desc(pullups)) %>%
+  nrow()
+
+names(athlete)
+
+athlete %>%
+  drop_na(train) %>%
+  head(n = 100) %>%
+  select(athlete_id, team, train) -> train
+  
+
+str_detect(train$train, "I workout mostly") -> vals
+
+train$present <- vals
+
+train
+
+athlete$train
