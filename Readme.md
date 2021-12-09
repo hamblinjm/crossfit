@@ -45,9 +45,10 @@ We then realized as we were checking each of the columns’ summaries that inclu
 
 
 ## Models
-### Tested models
-
-### Best model
+We tried three different models:
+* KNN
+* Decision Tree
+* Bagged Decision Tree
 
 ### KNN
 
@@ -71,10 +72,11 @@ While doing the individual approach we were able to see a few predictors that te
 
 
 ### Decision Tree
-
+We also tried a decision tree model. The parameters we used for this model included age, height, weight, gender, personal bests for several exercises, workout habits, sports experience, and diet. We did not rerun this model with different subsets of predictors.
+To build the decision tree model, we used a `StandardScaler` to get all the data on the same scale, and then we used a `GridSearchCV` to test the values 1-50 for the `max_depth` hyperparameter. With `random_state = 0`, we found that the best value of `max_depth` was 16. Using that value produced a model with RMSE = 12627.278421621208.
 
 ### Bagging 
 
 
 ## Conclusion
-Even with our best model, we couldn't make very accurate predictions on how well an athlete will rank in competition. This makes sense because...
+With our best model, we could make decent predictions, even if they are still a little off from how well an athlete really ranks in competition. This makes sense because looking at the individual trends from each exercise plotted against the rank, in most cases, there is not a strong correlation. With this in mind, our best model's RMSE of 8540 is fairly good. 
