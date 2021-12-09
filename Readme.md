@@ -49,6 +49,32 @@ We then realized as we were checking each of the columns’ summaries that inclu
 
 ### Best model
 
+### KNN
+
+For the knn regression model we tried several different approaches to finding good predictors for the model to get the lowest root mean squared error value. 
+
+This first image shows an example of where we would only use one predictor in order to predict for the rank variable. This specific picture is when we used the "candj" column which seemed to be a better predictor than most. Some of the worst predictors were age and weight where it didn't seem to have any trend in regards to someone having a better rank based on if they were a younger athlete.
+
+(The next few picture examples are subsetted for the female athletes because we were trying to see if we could predict rank better if we had the male and female athletes in separate prediction models)
+
+<img width="416" alt="candj_subset_female" src="https://user-images.githubusercontent.com/77635875/145334164-b3a8e249-6aeb-4de2-9198-d232a07eb293.png">
+
+You can see that the scale goes up to values as high as 80000. A lower rank means that you are performing better, so in this case rank is similar to a golf score in the sense that lower is better. Hopefully someone doesn't get a golf score of 80000.
+
+In this next picture it shows our next approach of using all of the predictors in the knn regression model. We got a rmse value as low as 9126 when the nearest neighbor parameter was 3. Which is fairly high, however, it is on a scale of 80000. 
+
+<img width="339" alt="rmse_female_full" src="https://user-images.githubusercontent.com/77635875/145334358-502ca264-0e33-454c-bed5-4bd78043f9ed.png">
+
+While doing the individual approach we were able to see a few predictors that tended to have more of a trend than some of the other predictors. We were then able to do another knn model where it was trained but based on a subset of those predictors that seemed to trend better with the rank response variable. These better predictors were 'helen', 'grace', 'fran', 'pullups', and 'backsq' (back squat). From this picture you can see that with a nearest neighbor parameter of 3 the rmse was able to drop as low as 8540. This value is still quite high on the scale of 80000, but was fairly lower than the 9126 that we got from using all of the predictors. 
+
+<img width="336" alt="subset_rmse_female" src="https://user-images.githubusercontent.com/77635875/145334480-0f26f3dd-0cae-4154-b517-b366a26c65bd.png">
+
+
+### Decision Tree
+
+
+### Bagging 
+
 
 ## Conclusion
 Even with our best model, we couldn't make very accurate predictions on how well an athlete will rank in competition. This makes sense because...
