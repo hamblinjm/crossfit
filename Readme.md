@@ -1,17 +1,3 @@
----
-title: "Predicting Crossfit Rank from Athletes' Profiles"
-layout: post
-author: jessica-hamblin, skimbal_22, bradenwellman
-post-image: /
-description: Show how using athlete's profiles provides some information to predict how well they will do in competition.
-tags:
-- regression
-- knn
-- decision tree
-- crossfit
-- athlete
----
-
 # Predicting Crossfit Competition Rank from Athletes' Profiles
 
 Our group was interested in finding out how to design personalized workouts that would help an individual improve the most. To do this, we found a database of 
@@ -73,10 +59,14 @@ While doing the individual approach we were able to see a few predictors that te
 
 ### Decision Tree
 We also tried a decision tree model. The parameters we used for this model included age, height, weight, gender, personal bests for several exercises, workout habits, sports experience, and diet. We did not rerun this model with different subsets of predictors.
-To build the decision tree model, we used a `StandardScaler` to get all the data on the same scale, and then we used a `GridSearchCV` to test the values 1-50 for the `max_depth` hyperparameter. With `random_state = 0`, we found that the best value of `max_depth` was 16. Using that value produced a model with RMSE = 12627.278421621208.
+To build the decision tree model, we used a `StandardScaler` to get all the data on the same scale, and then we used a `GridSearchCV` to test the values 1-50 for the `max_depth` hyperparameter. With `random_state = 0`, we found that the best value of `max_depth` was 16. Using that value produced a model with RMSE = 8970 and R^2 = 0.8429.
 
 ### Bagging 
+We thought that bagging would improve the performance of our decision tree, so we tried that as well. The bagging regressor with `base_estimator` equal to our decision tree increased R^2 to be 0.8968 (compared to 0.8429 from the decision tree alone) and decreased RMSE to be about 7269 (compared to 8970). This is a great improvement.
 
 
 ## Conclusion
-With our best model, we could make decent predictions, even if they are still a little off from how well an athlete really ranks in competition. This makes sense because looking at the individual trends from each exercise plotted against the rank, in most cases, there is not a strong correlation. With this in mind, our best model's RMSE of 8540 is fairly good. 
+The model with the best RMSE and R^2 was the bagging model built off of our decision tree with. With this model we can make decent predictions, even if they are still a little off from how well an athlete really ranks in competition. This makes sense because looking at the individual trends from each exercise plotted against the rank, in most cases, there is not a strong correlation. Knowing that the correlation is fairly weak and that the rank ranges from about 1-80,000, our best model's RMSE of 7269 is fairly good.
+
+![image](https://user-images.githubusercontent.com/65671142/145696774-9fa04a0b-493d-4a20-9891-81feae1ab81e.png)
+
