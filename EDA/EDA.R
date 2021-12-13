@@ -97,7 +97,7 @@ library(pirateplot)
 athlete %>%
   select(pullups) %>%
   arrange(desc(pullups)) %>%
-  head(n = 100)
+  head(n = 10)
 
 max(athlete$backsq, na.rm = TRUE)
 max(athlete$helen, na.rm = TRUE)
@@ -168,3 +168,32 @@ this %>%
   geom_histogram()
 
 
+
+
+
+
+# Showing what the dataframes look like
+head(athlete)
+
+# Number of rows in athlete
+nrow(athlete)
+nrow(leader)
+
+# Amount of missing values for each column
+colSums(is.na(athlete))
+
+# Unique values for training
+unique(athlete$train) # 85
+unique(athlete$eat) # 49
+
+# Top 10 values for pullups
+athlete %>%
+select(pullups) %>%
+  arrange(desc(pullups)) %>%
+  head(n = 10)
+
+# Backsquat histogram
+athlete %>%
+  filter(backsq < 1500) %>%
+  ggplot(mapping = aes(x = backsq)) +
+  geom_histogram()
