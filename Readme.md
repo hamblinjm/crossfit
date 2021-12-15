@@ -66,7 +66,7 @@ We thought that bagging would improve the performance of our decision tree, so w
 
 
 ## Conclusion
-The model with the best RMSE and R^2 was the bagging model built off of our decision tree with. With this model we can make decent predictions, even if they are still a little off from how well an athlete really ranks in competition. This makes sense because looking at the individual trends from each exercise plotted against the rank, in most cases, there is not a strong correlation. Knowing that the correlation is fairly weak and that the rank ranges from about 1-80,000, our best model's RMSE of 7269 is fairly good.
+The model with the best RMSE and R^2 was the bagging model built off of our decision tree. With this model we can make decent predictions, even if they are still a little off from how well an athlete really ranks in competition. This makes sense because looking at the individual trends from each exercise plotted against the rank, in most cases, there is not a strong correlation. Knowing that the correlation is fairly weak and that the rank ranges from about 1-80,000, our best model's RMSE of 7269 is fairly good.
 
 ![image](https://user-images.githubusercontent.com/65671142/145696774-9fa04a0b-493d-4a20-9891-81feae1ab81e.png)
 
